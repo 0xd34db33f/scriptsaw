@@ -8,6 +8,8 @@ DEVICE_NAME="$1"
 EASY_RSA_DIRECTORY="/etc/openvpn/easy-rsa"
 KEYS_DIRECTORY="/etc/openvpn/keys"
 CERTS_DIRECTORY=""
+SERVER_NAME="SERVER_HOST_OR_IP_GOES_HERE"
+SERVER_PORT="SERVER_PORT_GOES_HERE"
 EMAIL_CERT_RECIPIENT="$2"
 
 # check if we have a device name
@@ -35,7 +37,7 @@ cd $KEYS_DIRECTORY
 # build OVPN file
 /bin/echo "dev tun" > $KEYS_DIRECTORY/$DEVICE_NAME.ovpn
 /bin/echo "client" >> $KEYS_DIRECTORY/$DEVICE_NAME.ovpn
-/bin/echo "remote organizedvillainy.com 1194" >> $KEYS_DIRECTORY/$DEVICE_NAME.ovpn
+/bin/echo "remote $SERVER_NAME $SERVER_PORT" >> $KEYS_DIRECTORY/$DEVICE_NAME.ovpn
 /bin/echo "proto udp" >> $KEYS_DIRECTORY/$DEVICE_NAME.ovpn
 /bin/echo "comp-lzo" >> $KEYS_DIRECTORY/$DEVICE_NAME.ovpn
 /bin/echo "" >> $KEYS_DIRECTORY/$DEVICE_NAME.ovpn
