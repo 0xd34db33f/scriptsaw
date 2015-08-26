@@ -3,6 +3,7 @@
 # 2014-09-15
 # Generic securing script for Ubuntu 14.04 LTS versions on VPSs quickly.
 # Works for ruby versions > 1.9.1
+# This script assumes you have installed ruby via rvm (https://rvm.io/rvm/install) or apt-get install ruby
 # This file must be run as root. Assumes this is a default server install, I use this to quickly
 # install and secure VPS and VMs with basic "no pants down moments" security.
 # * I recommend running `apt-get update; apt-get upgrade` before doing this script or it might take a while..
