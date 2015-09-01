@@ -8,7 +8,7 @@
 USER="$1"
 KEY=""
 
-useradd $USER -s /bin/bash -m
+useradd -s /bin/bash -m $USER
 passwd $USER
 mkdir -p /home/$USER 
 chown $USER:$USER /home/$USER 
