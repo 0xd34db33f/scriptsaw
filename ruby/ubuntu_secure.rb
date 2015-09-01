@@ -79,6 +79,8 @@ def rclocal_create
 	rclocal = ""
 	rclocal << "#!/bin/sh -e\n"
 	rclocal << "# Default rc.local file, created #{DATE}\n\n"
+	rclocal << "# disable plymouth\n"
+	rclocal << "/bin/rm -f /etc/init/plymouth* > /dev/null 2>&1\n\n"
 	rclocal << "# shields up!\n"
 	rclocal << "#{FIREWALL_FILE} 2>&1 >/dev/null\n\n"
 	rclocal << "exit 0\n"
