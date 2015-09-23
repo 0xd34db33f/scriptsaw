@@ -2,7 +2,8 @@
 # spamassassin_autogenerate_whitelist.sh
 # Ryan C. Moon
 # 2015-09-23
-# Autogenerates a whitelist for SpamAssassin based on all your senders.
+# Autogenerates a whitelist for SpamAssassin based on all your senders. 
+# This should be automated to run via crontab.
 # REQUIRES Postfix setup to use MAILDIR
 # REQUIRES SpamAssassin to include the CUSTOM_WHITELIST file in local.cf. 
 
