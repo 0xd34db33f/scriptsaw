@@ -300,7 +300,7 @@ def update_crontab
 	crontab << "52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )\n\n"
 	crontab << "# Administrivia\n"
 	crontab << "0 * * * * root #{CMND_NTPDATE} #{DEFAULT_NTP} 2>&1 > /dev/null\n"
-	crontab << "* * * * * root (date && sensors && hddtemp #{DEFAULT_HDD}) >> /var/log/heat.log 2>/dev/null\n"	
+	crontab << "* * * * * root (date && sensors -f && hddtemp #{DEFAULT_HDD}) >> /var/log/heat.log 2>/dev/null\n"	
 
 	print "[.] Updating #{CRONTAB_FILE} ..\n"
 	File.open(CRONTAB_FILE, "w") {|f| f.write(crontab) }
