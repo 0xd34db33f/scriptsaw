@@ -321,6 +321,12 @@ def install_syslogng
 	results = %x(#{CMND_SERVICE} syslog-ng restart)
 end
 
+# disable ntpd 
+def disable_ntpd
+	print "[.] Disabling ntpd..\n"
+	results = %x(#{CMND_UPDATERCD} ntp disable)
+end
+
 
 #### Main
 print "## Ubuntu 14.04 LTS Secure Script by Ryan C. Moon.. w00pw00p!\n"
@@ -362,8 +368,10 @@ CMND_HDDTEMP = %x(#{CMND_WHICH} hddtemp).chomp
 CMND_SENSORS = %x(#{CMND_WHICH} sensors).chomp
 
 # install haveged
-print "[*] Installing haveged..\n"
 install_haveged()
+
+# disable ntp
+disable_ntpd()
 
 # rc.local
 print "[*] Creating #{RCLOCAL_FILE}..\n"
