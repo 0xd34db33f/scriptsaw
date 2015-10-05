@@ -55,7 +55,7 @@ CMND_NTPDATE = %x(#{CMND_WHICH} ntpdate).chomp
 CMND_UPDATERCD = %x(#{CMND_WHICH} update-rc.d).chomp
 CMND_SERVICE = %x(#{CMND_WHICH} service).chomp
 CMND_ECHO = %x(#{CMND_WHICH} echo).chomp
-
+CMND_UPDATERCD = %x(#{CMND_WHICH} update-rc.d).chomp
 
 # chmod function tool
 def chmod_tool(file,perms)
