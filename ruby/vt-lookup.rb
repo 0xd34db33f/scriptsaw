@@ -25,7 +25,7 @@ options = {
   :filename => '',
   :hash => '',
   :file_command => '/usr/bin/file',
-  :acceptable_mime_types => ["application/octet-stream","application/x-msi","application/vnd.ms-office"]
+  :acceptable_mime_types => ["application/octet-stream","application/x-msi","application/x-dosexec","application/vnd.ms-office"]
 }
 
 ###### Objects #############
