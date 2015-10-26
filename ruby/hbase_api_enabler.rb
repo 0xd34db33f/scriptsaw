@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # hbase_api_enabler.rb
-# Ryan C. Moon
+# Ryan C. Moon (@ryancmoon|ryan@organizedvillainy.com)
 # 2015-10-06
 # Works with your HBase API to add/remove data, create/remove tables, etc.
 # HBase API Reference: https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html
@@ -15,8 +15,8 @@ require "yaml"
 ### Constants and globals
 VERSION="0.5"
 DEBUG = 0
-HBASE_SERVER = "HBASE_REST_API_URL_GOES_HERE"
-HBASE_PORT = "HBASE_REST_API_PORT_GOES_HERE"
+HBASE_SERVER = "adventure.organizedvillainy.com"
+HBASE_PORT = "8080"
 options = { 
   'user_agent' => "Ruby/HBase API CLI Enabler #{VERSION}"
 }
@@ -417,7 +417,7 @@ def get_row(options)
     print "[returned] value:\n#{results} \n" if DEBUG > 0
     print "[success] Row: \n"
     result_set = parse_yaml(results)
-    if result_set.has_key?('Row')
+    if result_set.class == Hash && result_set.has_key?('Row') && result_set['Row'].class == Array && result_set['Row'][0].has_key?('Cell')
       rows = []
       
       result_set['Row'][0]['Cell'].each do |column|
