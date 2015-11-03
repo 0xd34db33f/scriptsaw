@@ -15,8 +15,8 @@ require "yaml"
 ### Constants and globals
 VERSION="0.5"
 DEBUG = 0
-HBASE_SERVER = "adventure.organizedvillainy.com"
-HBASE_PORT = "8080"
+HBASE_SERVER = ""
+HBASE_PORT = ""
 options = { 
   'user_agent' => "Ruby/HBase API CLI Enabler #{VERSION}"
 }
