@@ -47,6 +47,39 @@ def get_url(url)
   (results.code == 200) ? true : false
 end
 
+def check_for_common_kit(url)
+  found = false
+  KIT_FILENAMES.each do |name|
+    next if found
+    kit_url = url + "/" + name
+    if get_url(kit_url)
+      found = true
+      print "Kit found: #{kit_url} \n"
+    end
+  end
+  found
+end
+
+def check_for_folder_kit(url)
+  found = false
+  kit_url = url + ".zip"
+  if get_url(kit_url)
+    found = true
+    print "Kit found: #{kit_url} \n"
+  end
+  found
+end
+
+def folder_walk(url)
+  found = false
+  while url != "http:/" and !found do
+    found = check_for_common_kit(url)
+    found = check_for_folder_kit(url) if !found and url.rpartition("/")[0] != "http:/"
+    url = url.rpartition("/")[0]
+  end
+  found
+end
+
 # go
 usage("Error parsing command line options") if ARGV.size != 1
 usage("Error parsing URL argument:#{ARGV[0]}") unless ARGV[0].match(/^https?:\/\//)
@@ -56,15 +89,8 @@ url = ARGV[0]
 url = url.chomp if url.match(/\/$/)
 
 # Loop through kit names looking for kits.
-found = false
-KIT_FILENAMES.each do |name|
-  next if found
-  kit_url = url + "/" + name
-  if get_url(kit_url)
-    found = true
-    print "Kit found: #{kit_url} \n"
-  end
-end
+
+found = folder_walk(url)
 
 # boo we didn't find anything
 print "BOO! No kits found for base_url: #{url}..\n" if !found
